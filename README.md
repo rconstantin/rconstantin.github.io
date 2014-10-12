@@ -1,0 +1,1 @@
+This is the repository for Assignment 2 which includes hosting on GitHub as well as adding JQUERY to site.
