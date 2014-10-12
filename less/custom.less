@@ -1,0 +1,195 @@
+/* Custom styling:
+*/
+// site-heading: New custom class for displaying the Name & Title on top of each of the pages
+.site-heading {
+  color: darken(@brand-secondary,25%);
+  font-family: @headings-font-family;
+  font-style: italic;
+  font-size: 1.2em;
+  text-align: center;
+  padding-top: 0.5em;
+}
+// adjust font-size, padding and text align for larger (than 768px) size screen 
+@media (min-width: 768px) {  
+  .site-heading {
+      font-size: 2em;
+      padding-top: 1.6em;
+  }
+  .heading-left {
+      text-align: left;
+  }
+  .heading-right {
+      text-align: right;
+  }
+}
+// new style for adding a caption to logo image added in index.html
+.logo-caption {
+  text-align: center;
+  vertical-align: middle;
+  position: absolute;
+  left: -120px;
+  right: -20px;
+  bottom: 65px;
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: @logo-caption-color;
+  text-align: center;
+  text-shadow: @logo-text-shadow;
+  @media screen and (max-width: @screen-xs-min) {
+    left: -18px;
+    right: -20px;
+    bottom: 35px;
+  }
+}
+// Robbie: modified navbar inverse related classes and glyphicon for color and hover consistency
+.navbar-inverse .navbar-toggle {
+  color: white;
+  font-weight: bold;
+  border-color: white;
+  float: left;
+}
+.navbar-inverse .navbar-toggle:hover {
+  //background-color: #ddd;
+  background-color:lighten(@brand-secondary,20%);
+  color: white;
+}
+.navbar-inverse .navbar-toggle .glyphicon {
+  color: white;
+}
+.navbar-inverse .navbar-toggle:hover .glyphicon {
+  color: white;
+}
+
+// Robbie: Changes to the jumbotron size & positioning
+@media screen and (min-width: @screen-sm-min) {
+    .jumbotron h1,
+    .jumbotron .h1 {
+      font-size: (@font-size-base * 3);
+    }
+    .jumbotron p {
+        font-family: @sub-headings-font-family;
+    }
+    // reduce the max width of container to 80% of page size for smoother effect
+    .container {
+    max-width: 80%;
+    }
+}
+.jumbotron {
+    border: 1px solid @brand-secondary;
+    margin-top: 20px;
+}
+
+/* Robbie: buttons using mixins */
+/* Robbie: Added new class for custom button size based on media screen*/
+.btn-responsive {
+  .button-variant(#fff, @brand-secondary, darken(@brand-secondary,18%));
+ 
+  font-family: @headings-font-family;
+
+  @media screen and (min-width: @screen-sm-min) {
+      .button-size(@padding-large-vertical; @padding-large-horizontal; @font-size-large; @line-height-large; @border-radius-large);
+  }
+  @media screen and (max-width: @screen-xs-min) {
+      .button-size(@padding-small-vertical; @padding-small-horizontal; @font-size-small; @line-height-small; @border-radius-small);
+    }
+}
+/* Robbie: stylizing tab-content for about.html nav-Tab styling */
+.tab-content {
+  border: 1px solid @brand-secondary;
+  border-radius: @navbar-border-radius;
+  .clearfix();
+  padding: 10px;
+}
+
+/* Robbie: modified nav-tabs to include all around border instead of just bottom:*/
+// Also wanted to make the names font size and padding between tabs responsive
+.nav-tabs {
+  border: 1px solid @brand-secondary;
+  border-radius: @navbar-border-radius;
+  .clearfix();
+  > li {
+      > a {
+        padding: 3px 5px;
+      }
+  }
+  @media screen and (max-width: @screen-md-min) { 
+    a {
+      font-size: x-small;
+      font-weight: 500;
+    }
+  }
+  @media screen and (max-width: @screen-sm-min) { 
+    a {
+      font-weight: 400;
+    }
+  }
+}
+// Robbie: created new class for extra padding to align grid elements in a row (about.html)
+.extra-padding {
+  margin-top: 20px;
+  padding-left: 15px;
+}
+
+// Robbie: used to squeeze images to stack other photos in about.html
+.img-squeeze {
+  max-width: 35%;
+  padding-bottom: 20px;
+}
+// Style caption for images under nav in about.html
+.image-caption {
+  background-color: lighten(@brand-secondary,20%);
+  border: 2px solid transparent;
+  border-radius: @about-us-border-radius;
+  .box-shadow(0 1px 1px rgba(0,0,0,.05));
+}
+/*Robbie: added styling for about us layout adopted in about.html*/
+
+.about-us {
+  margin-top: @line-height-computed;
+  background-color: lighten(@brand-secondary,20%);
+  border: 1px solid transparent;
+  border-radius: @about-us-border-radius;
+  .box-shadow(0 1px 1px rgba(0,0,0,.05));
+  max-width: 80%;
+  // This margin-left is needed for xs screen for nicer layout'
+  // sm screen with ipad in horizontal view not nice
+  @media screen and (max-width: @screen-xs-min) { 
+    margin-left: 40px;
+  }
+}
+
+// body contents
+.about-us-body {
+  padding: 4px;
+  &:extend(.clearfix all);
+}
+//about us custom heading: 
+// using sub-headings-font-family defined in variables.less and imported from google fonts
+.about-us-heading {
+  font-family: @sub-headings-font-family;
+  font-size: 2em;
+  padding: 1px 5px;
+  border-bottom: 1px solid transparent;
+  .border-top-radius((@about-us-border-radius - 1));
+}
+
+// Robbie: Customizing thumbnail and mixing to use throughout the site, in particular in collections.html page
+// for customizing the different collections
+.thumbnail {
+  background-color: lighten(@brand-secondary,20%);
+  border-color: @brand-secondary;
+  .transition(all .6s ease-in-out);
+}
+
+.modal-content {
+  color: darken(@brand-secondary,20%);
+  background-color: lighten(@brand-secondary,30%);
+}
+
+// customize panel bg color
+.panel {
+  background-color: lighten(@brand-secondary,40%);
+}
+
+
