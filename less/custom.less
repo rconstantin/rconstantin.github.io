@@ -57,6 +57,10 @@ text-align: center;
 text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
+.glyphicon {
+    top: -10px;
+    font-size: smaller;
+}
 // Robbie: modified navbar inverse related classes and glyphicon for color and hover consistency
 .navbar-inverse .navbar-toggle {
   color: white;
@@ -164,13 +168,18 @@ text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 // Style caption for images under nav in about.html
 .image-caption {
+  margin: 12px;
   background-color: lighten(@brand-secondary,20%);
   border: 2px solid transparent;
   border-radius: @about-us-border-radius;
   .box-shadow(0 1px 1px rgba(0,0,0,.05));
 }
-/*Robbie: added styling for about us layout adopted in about.html*/
 
+/* Robbie: used to animation on page load*/
+.row .about-us {display: none;}
+//.tab-content .active {display: none;}
+
+/*Robbie: added styling for about us layout adopted in about.html*/
 .about-us {
   margin-top: @line-height-computed;
   background-color: lighten(@brand-secondary,20%);
@@ -216,6 +225,12 @@ text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 // customize panel bg color
 .panel {
   background-color: lighten(@brand-secondary,40%);
+  @media screen and (max-width: @screen-xs-min) { 
+      margin-left: 65px;
+      
+      width: 50%;
+      
+  }
 }
 
 
