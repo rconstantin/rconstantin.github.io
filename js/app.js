@@ -5,7 +5,7 @@ $(document).ready(function() {
                   'class': 'img-responsive img-thumbnail img-rounded'
             }); //end of family img attr
             $('#logo-btn').addClass('hidden');
-            $('#logo').addClass('panel img-thumbnail hidden-xs');
+            $('#logo').addClass('panel img-thumbnail');
             $('#logo-img').replaceWith('<p> <span class="label label-success">You have clicked Me! </span></p><p> <span>Background: this photo was taken in the spring of 2012 by a very talented photographer at our local community beach.</span></p>');
 
       }); // end of logo-btn click

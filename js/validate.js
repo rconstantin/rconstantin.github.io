@@ -1,47 +1,59 @@
  $(document).ready(function() {
       var maxChar = 128; // limit of char for text area
-      $('input[name="first_name"]').click(function() {
-          //var label = $(this).next();
-          //var msg = "Min Length: 1 char, max 12.";
-         // console.log('first_name', $(this), 'label', label);
-          $('#outputFirst').attr({'class':'visible'});
-          $('#outputLast').attr({'class':'hidden'});
-          $('#outputEmail').attr({'class':'hidden'});
-          $('#outputNote').attr({'class':'hidden'});
-          //$('#outputFirst').html(msg);
-          //$('#outputLast').html(); // reset
-          //$('#outputEmail').html(); // reset
+      $('#first').focus(function() {
+    
+            $('.first-group .help-block').text('Min Length: 1 char, max 12!');
+
       }); // end click first name function
-
-      $('input[name="last_name"]').click(function() {
-          //var label = $(this).next();
-         // var msg = "Last Name: Min Length 3, max 12.";
-          //$('#outputLast').html(msg);
-          $('#outputLast').attr({'class':'visible'});
-          $('#outputFirst').attr({'class':'hidden'});
-          $('#outputEmail').attr({'class':'hidden'});
-          $('#outputNote').attr({'class':'hidden'});
+      $('#first').focusout(function(){
+            if ($('#first').val().length == 0) 
+            {
+                  $('.first-group .help-block').addClass('label-danger');
+                  $('.first-group .help-block').text('PLEASE ENTER A VALID FIRST NAME!');
+            } // end if (first_name length)
+            else {
+                  $('.first-group .help-block').removeClass('label-danger');
+                  $('.first-group .help-block').text('');
+            }
+      }); // end of first_name focusout
+      $('#last').focus(function() {
+            var msg = 'Last Name: Min Length 3, max 12!';
+            $('.last-group .help-block').removeClass('label-danger');
+            $('.last-group .help-block').text(msg);
+      });
+      $('#last').focusout(function(){
+            if ($('#last').val().length < 3) 
+            {
+                  $('.last-group .help-block').addClass('label-danger');
+                  $('.last-group .help-block').text('PLEASE ENTER A VALID LAST NAME!');
+            } // end if (last_name length)
+            else {
+                  $('.last-group .help-block').text('');
+            }
+      }); // end of last name focusout
+      $('#email').focus(function() {
+            var msg = "Email: will be used for future correspondance.";
+            $('.email-group .help-block').removeClass('label-danger');
+            $('.email-group .help-block').text(msg);
       });
 
-      $('input[name="email"]').click(function() {
-          //var label = $(this).next();
-          //var msg = "Email: will be used for future reference.";
-          //$('#outputEmail').html(msg);
-          $('#outputLast').attr({'class':'hidden'});
-          $('#outputFirst').attr({'class':'hidden'});
-          $('#outputEmail').attr({'class':'visible'});
-          $('#outputNote').attr({'class':'hidden'});
+      
+      $('#email').focusout(function(){
 
-      });
+            var filter = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+  
+            if (!filter.test($('#email').val())) {
+                  $('.email-group .help-block').addClass('label-danger');
+                  $('.email-group .help-block').text('PLEASE ENTER A VALID EMAIL!');
+            } // end if (emailus length)
+            else {
+                  $('.email-group .help-block').text('');
+            }
+      }); // end of email focusout
 
       $('textarea[name="note"]').click(function() {
-          //var label = $(this).next();
-          //var msg = "Please leave us a few kind words!";
-          $('#outputLast').attr({'class':'hidden'});
-          $('#outputFirst').attr({'class':'hidden'});
-          $('#outputEmail').attr({'class':'hidden'});
-          $('#outputNote').attr({'class':'visible'});
-          $('#outputNote').html('<span class="label label-warning">Max length ' + maxChar + '!</span>');
+            $('#outputNote').attr({'class':'visible'});
+            $('#outputNote').html('<span class="label label-warning">Max length ' + maxChar + '!</span>');
       });
       // use keyup to count remaining allowed characters to add in text area.
       $('#inputNote').keyup(function(){
@@ -62,48 +74,34 @@
             }
       }); // end of inputNode keyup
 
-     $('input[name="checkbox"]').click(function() {
-          $('#outputLast').attr({'class':'hidden'});
-          $('#outputFirst').attr({'class':'hidden'});
-          $('#outputEmail').attr({'class':'hidden'});
-          $('#outputNote').attr({'class':'hidden'});
-      });
-      // FORM INPUT RANGE VALIDATION USING PLUGIN: validation.min.js
-      $(function() {
+      // submit validation
+      $('button').click(function(submit) {
+            var error = 0;
+            if ($('#first').val().length == 0) 
+            {
+                  $('.first-group .help-block').addClass('label-danger');
+                  $('.first-group .help-block').text('PLEASE ENTER A VALID FIRST NAME!');
+                  error += 1;
+            } // end if (first_name length)
+            if ($('#last').val().length < 3) 
+            {
+                  $('.last-group .help-block').addClass('label-danger');
+                  $('.last-group .help-block').text('PLEASE ENTER A VALID LAST NAME!');
+                  error += 1;
+            } // end if (last_name length)
 
-        var form  = $('form');
-      //  var submit  = $('#submit');
-      //  var alert = $('.alert');
-
-        // validate form
-        form.validate({
-          // validation rules
-          rules: {
-            // first name field (required , minimum length 1, max 12)
-            first_name: {
-              required: true,
-              minlength: 1,
-              maxlength: 12,
-            },
-            // last_name field (required , minimum length 3, max 12)
-            last_name: {
-              required: true,
-              minlength: 3,
-              maxlength: 12,
-            },
-            // password field (required , minimum length 6, max 12)
-            password: {
-              required: true,
-              minlength: 6,
-              maxlength: 12
-            },
-            // email field only required
-            email: {
-              required: true,
+            var filter = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+  
+            if (!filter.test($('#email').val())) {
+                  $('.email-group .help-block').addClass('label-danger');
+                  $('.email-group .help-block').text('PLEASE ENTER A VALID EMAIL!');
+                  error += 1;
+            } // end if (emailus length)
+          
+            if (error == 0) {
+                  $('#myModal').modal();
+                  
             }
-          },
-          ignore: ":hidden"
-        });
-      });
-
+            submit.preventDefault(); // to prevent submit from going to the server
+      }); //end click button
 }); // end of document ready
