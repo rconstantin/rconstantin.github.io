@@ -5833,8 +5833,8 @@ button.close {
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
-.glyphicon {
-  top: -10px;
+.glyphicon-star {
+  top: -7px;
   font-size: smaller;
 }
 .navbar-inverse .navbar-toggle {
