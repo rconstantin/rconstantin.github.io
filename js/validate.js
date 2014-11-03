@@ -51,18 +51,17 @@
             }
       }); // end of email focusout
 
-      $('textarea[name="note"]').click(function() {
-            $('#outputNote').attr({'class':'visible'});
+      $('#note').focus(function() {
             $('#outputNote').html('<span class="label label-warning">Max length ' + maxChar + '!</span>');
       });
       // use keyup to count remaining allowed characters to add in text area.
-      $('#inputNote').keyup(function(){
-            if($('#inputNote').val().length > maxChar) {
+      $('#note').keyup(function(){
+            if($('#note').val().length > maxChar) {
                   // do not exceed the maxChar: using the javascript substr() 
                   // will truncate displayed text not to exceed max set
-                  $('#inputNote').val($('#inputNote').val().substr(0, maxChar));
+                  $('#note').val($('#note').val().substr(0, maxChar));
             }
-            var remaining = maxChar -  $('#inputNote').val().length;
+            var remaining = maxChar -  $('#note').val().length;
             if (remaining > 20) {
                   $('#outputNote').html('<span class="label label-success"> You have <strong>'+  remaining +'</strong> characters remaining</span>');
             }
@@ -74,6 +73,9 @@
             }
       }); // end of inputNode keyup
 
+      $('#note').focusout(function() {
+            $('#outputNote').html('');
+      });
       // submit validation
       $('button').click(function(submit) {
             var error = 0;
