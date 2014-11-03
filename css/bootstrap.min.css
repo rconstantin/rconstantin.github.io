@@ -6069,3 +6069,7 @@ fieldset[disabled] .btn-responsive.active {
     font-size: 10px;
   }
 }
+.collection {
+  margin-left: -10px;
+  margin-right: 30px;
+}
