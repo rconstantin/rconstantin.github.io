@@ -6061,3 +6061,11 @@ fieldset[disabled] .btn-responsive.active {
     width: 50%;
   }
 }
+.form-horizontal {
+  margin-bottom: 2px;
+}
+@media screen and (max-width: 992px) {
+  .control-label {
+    font-size: 10px;
+  }
+}
