@@ -1,6 +1,5 @@
 $(document).ready(function(){
       $('.nav-tabs').click(function(){
-            console.log('got clicked');
             $('.animate').slideToggle(1);
             $('.animate').slideToggle(2000);
       }); //end michele click
