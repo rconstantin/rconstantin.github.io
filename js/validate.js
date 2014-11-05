@@ -71,7 +71,7 @@
             else {
                   $('#outputNote').html('<span class="label label-danger"> You have <strong>'+  remaining +'</strong> characters remaining</span>');
             }
-      }); // end of inputNode keyup
+      }); // end of note keyup
 
       $('#note').focusout(function() {
             $('#outputNote').html('');
@@ -90,7 +90,7 @@
                   $('.last-group .help-block').addClass('label-danger');
                   $('.last-group .help-block').text('PLEASE ENTER A VALID LAST NAME!');
                   error += 1;
-            } // end if (last_name length)
+            } // end if (last length)
 
             var filter = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
   
@@ -98,12 +98,17 @@
                   $('.email-group .help-block').addClass('label-danger');
                   $('.email-group .help-block').text('PLEASE ENTER A VALID EMAIL!');
                   error += 1;
-            } // end if (emailus length)
+            } // end if (email length)
           
             if (error == 0) {
                   $('#myModal').modal();
                   
             }
             submit.preventDefault(); // to prevent submit from going to the server
+            
       }); //end click button
+      $('.resetInput').click(function(){ // used to reset input on successful submit.
+            $('.form-horizontal')[0].reset();
+      });
+
 }); // end of document ready
